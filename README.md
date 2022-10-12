@@ -1,7 +1,7 @@
 # ASNorm
 [中文文档|Chinese](README_zh.md)  
 
-search keywords: AS Norm; AS norm; AS-norm; as-norm   
+search keywords: AS Norm; AS-Norm; AS norm; AS-norm; as-norm   
 
 This is my implement of adaptive score normalization (AS-Norm) in speaker verification with pytorch.  
 
