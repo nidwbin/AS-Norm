@@ -1,6 +1,10 @@
 # ASNorm
 [English|英文文档](README.md)  
-这是我用pytorch实现的说话人识别自适应分数归一化(AS-Norm)仓库。  
+
+搜索关键字: AS Norm; AS norm; AS-norm; as-norm   
+
+这是我用pytorch实现的说话人识别自适应分数归一化(AS-Norm)仓库。
+
 仓库里还提供了一些说话人识别和pytorch常用的安全无脑的方法。
 ## 用法
 ```python
