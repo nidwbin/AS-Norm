@@ -1,9 +1,9 @@
-# ASNorm
+# AS-Norm
 [English|英文文档](README.md)    
 
-这是我用pytorch实现的说话人识别自适应分数归一化(AS-Norm)仓库。
+这是我用pytorch实现的说话人识别（验证）自适应分数归一化(AS-Norm)仓库。
 
-仓库里还提供了一些说话人识别和pytorch常用的安全无脑的方法。
+仓库里还提供了一些说话人识别（验证）和pytorch常用的安全无脑的方法。
 ## 用法
 ```python
 import numpy
