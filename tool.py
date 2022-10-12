@@ -1,7 +1,6 @@
 import math
 import os
 import random
-from collections import Counter
 
 import librosa
 import numpy
@@ -194,26 +193,31 @@ class To:
 to = To()
 
 
-def draw(data: numpy.array, labels: list or tuple, class_number, save_path=None):
+def draw(data: numpy.array, labels: list or tuple, save_path=None):
     tsne = TSNE(n_components=2, n_iter=3000, perplexity=10.0, init='pca', square_distances=True)
     result = tsne.fit_transform(data)
-
+    label_set = list(set(labels))
     marker = ['^', '2', '3', 'x', 'p', 's', 'h', 'd', 'D', '*']
-    len_per_color = math.ceil(len(labels) / len(marker))
+    len_per_color = math.ceil(len(label_set) / len(marker))
 
     color = set()
     while len(color) < len_per_color:
         color.add((numpy.random.random(), numpy.random.random(), numpy.random.random()))
     color = list(color)
-    markers = []
-    colors = []
+    markers_map = []
+    colors_map = []
     for i in marker:
         for j in color:
-            markers.append(i)
-            colors.append(j)
-    colors = colors[:len(labels)]
-    markers = markers[:len(labels)]
-    pyplot.scatter(result[:, 0], result[:, 1], c=colors, marker=markers)
+            markers_map.append(i)
+            colors_map.append(j)
+    markers_map = dict(zip(label_set, markers_map[:len(label_set)]))
+    colors_map = dict(zip(label_set, colors_map[:len(label_set)]))
+    colors = []
+    markers = []
+    for i in labels:
+        colors.append(colors_map[i])
+        markers.append(markers_map[i])
+    pyplot.scatter(result[:, 0], result[:, 1], c=colors_map, marker=markers_map)
     if save_path:
         pyplot.savefig(save_path)
     pyplot.show()
@@ -255,7 +259,7 @@ def setup_seed(seed=7):
 
 
 def as_norm(enroll_test: numpy.array, enroll_cohort: numpy.array, test_cohort: numpy.array, top_k: int = 400,
-            cross_select: bool = True, gpu: int = None, array: bool = True) -> numpy.array or torch.tensor:
+            cross_select: bool = False, gpu: int = None, array: bool = True) -> numpy.array or torch.tensor:
     '''
     :param enroll_test: shape(E, 1)
     :param enroll_cohort: shape(E, T)
@@ -269,8 +273,8 @@ def as_norm(enroll_test: numpy.array, enroll_cohort: numpy.array, test_cohort: n
     enroll_test, enroll_cohort, test_cohort = to.tensor([enroll_test, enroll_cohort, test_cohort])
     if gpu is not None:
         enroll_test, enroll_cohort, test_cohort = to.gpu([enroll_test, enroll_cohort, test_cohort], gpu)
-    enroll_cohort_select, enroll_cohort_idx = torch.topk(enroll_cohort, top_k)[1]
-    test_cohort_select, test_cohort_idx = torch.topk(test_cohort, top_k)[1]
+    enroll_cohort_select, enroll_cohort_idx = torch.topk(enroll_cohort, top_k)
+    test_cohort_select, test_cohort_idx = torch.topk(test_cohort, top_k)
 
     if cross_select:
         enroll_cohort_idx, test_cohort_idx = test_cohort_idx, enroll_cohort_idx
