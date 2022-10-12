@@ -1,5 +1,5 @@
 # ASNorm
-[中文文档|Chinese](README_zh.md)
+[中文文档|Chinese](README_zh.md)  
 This is my implement of adaptive score normalization (AS-Norm) in speaker verification with pytorch.  
 At the same time, I provide a brainless and safe tool for "cuda()", "detach()", "cpu()", "numpy()" in pytorch and some useful function in speaker verification.
 ## Usage
