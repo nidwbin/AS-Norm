@@ -1,4 +1,4 @@
-# ASNorm
+# AS-Norm
 [English|英文文档](README.md)  
 
 搜索关键字: AS Norm; AS-Norm; AS norm; AS-norm; as-norm   
