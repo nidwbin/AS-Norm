@@ -1,4 +1,4 @@
-# ASNorm
+# AS-Norm
 [中文文档|Chinese](README_zh.md)  
 
 search keywords: AS Norm; AS-Norm; AS norm; AS-norm; as-norm   
