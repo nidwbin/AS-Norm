@@ -3,7 +3,7 @@
 
 This is my implement of adaptive score normalization (AS-Norm) in speaker verification/recognition with pytorch.  
 
-At the same time, I provide a brainless and safe tool for "cuda()", "detach()", "cpu()", "numpy()" in pytorch and some useful function in speaker verification/recognition.
+At the same time, I provide a brainless and safe tool for "cuda()", "detach()", "cpu()", "numpy()" in pytorch and some useful functions in speaker verification/recognition.
 ## Usage
 ```python
 import numpy
